@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pronostico</title>
+</head>
+<body>
+    <h1>Inserisci Pronostico</h1>
+    <form method="POST">
+        Nome utente: <input type="text" name="username" required><br>
+        Partita: 
+        <select name="partita_id">
+        {% for id, desc in partite %}
+            <option value="{{ id }}">{{ desc }}</option>
+        {% endfor %}
+        </select><br>
+        Risultato esatto: <input type="text" name="risultato" required><br>
+        Marcatore: <input type="text" name="marcatore"><br>
+        <input type="submit" value="Invia">
+    </form>
+</body>
+</html>

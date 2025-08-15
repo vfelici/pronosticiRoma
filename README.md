@@ -1,25 +1,29 @@
-# Pronostici Roma - Web App Flask
+# Pronostici Roma - PostgreSQL Version
 
-Questa app permette a 5 utenti di inserire pronostici su partite della Roma.
-I pronostici sono nascosti fino alla fine della partita.
+## Come usare
 
-## Deploy su Render
+1. **Crea un database gratis su ElephantSQL**
+   - Vai su [https://www.elephantsql.com/](https://www.elephantsql.com/)
+   - Crea un account gratuito
+   - Crea un nuovo instance
+   - Copia la `URL` di connessione
 
-1. Crea un repository su GitHub e carica questa cartella.
-2. Su [Render.com](https://render.com), crea un nuovo **Web Service**.
-3. Build Command:
-   ```
-   pip install -r requirements.txt
-   ```
-4. Start Command:
-   ```
-   gunicorn app:app --preload
-   ```
-5. Aggiungi variabile d'ambiente `SECRET_KEY` con un valore casuale.
-6. Crea un disco persistente `/data` per il database.
-7. Dopo il primo deploy, visita `/init` per creare il DB e gli utenti:
-   - admin / adminpass
-   - user1 / pass1
-   - user2 / pass2
-   - user3 / pass3
-   - user4 / pass4
+2. **Carica su GitHub**
+   - Sostituisci i file di questo progetto nel tuo repo GitHub
+
+3. **Deploy su Render**
+   - Vai su [https://render.com/](https://render.com/)
+   - Crea un nuovo Web Service collegando il repo GitHub
+   - In `Environment Variables` aggiungi:
+     - Chiave: `DATABASE_URL`
+     - Valore: la URL di ElephantSQL
+   - Command: `gunicorn app:app`
+   - Build Command: `pip install -r requirements.txt`
+
+4. **Inizializza il DB**
+   - Vai su `https://TUO-SITO/render.com/init` per creare le tabelle
+
+5. **Usa l'app**
+   - `/` → Classifica
+   - `/pronostico` → Inserire pronostico
+   - `/risultati` → Inserire risultati ufficiali e calcolare punti

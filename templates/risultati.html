@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Risultati</title>
+</head>
+<body>
+    <h1>Inserisci o Visualizza Risultati</h1>
+    <form method="POST">
+        Partita: 
+        <select name="partita_id">
+        {% for id, desc, risultato, conclusa in partite %}
+            <option value="{{ id }}">{{ desc }}</option>
+        {% endfor %}
+        </select><br>
+        Risultato ufficiale: <input type="text" name="risultato" required><br>
+        <input type="submit" value="Salva e Calcola Punti">
+    </form>
+    <h2>Risultati ufficiali</h2>
+    <ul>
+        {% for id, desc, risultato, conclusa in partite %}
+            <li>{{ desc }} - {% if conclusa %} {{ risultato }} {% else %} (in corso) {% endif %}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
