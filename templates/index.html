@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head><title>Pronostici Roma</title></head>
+<body>
+<h1>Partite</h1>
+{% if session.username %}
+<p>Ciao {{ session.username }} (<a href="{{ url_for('logout') }}">Logout</a>)</p>
+{% else %}
+<p><a href="{{ url_for('login') }}">Login</a></p>
+{% endif %}
+<ul>
+{% for m in matches %}
+    <li>{{ m.home_team }} vs {{ m.away_team }} - {{ m.match_time }}
+        {% if session.username %}
+            <a href="{{ url_for('predict', match_id=m.id) }}">Pronostica</a> |
+            <a href="{{ url_for('view_predictions', match_id=m.id) }}">Vedi Pronostici</a>
+        {% endif %}
+    </li>
+{% endfor %}
+</ul>
+{% if session.is_admin %}
+    <p><a href="{{ url_for('add_match') }}">Aggiungi partita</a></p>
+{% endif %}
+</body>
+</html>
