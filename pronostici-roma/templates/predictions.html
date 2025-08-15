@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head><title>Pronostici</title></head>
+<body>
+<h1>Pronostici - {{ match.home_team }} vs {{ match.away_team }}</h1>
+<ul>
+{% for p in predictions %}
+    <li>{{ p.username }}: {{ p.score }} - {{ p.scorer }}</li>
+{% endfor %}
+</ul>
+</body>
+</html>
